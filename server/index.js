@@ -21,6 +21,9 @@ const DB = process.env.MONGO_URI;
 //listening to the socket io event s from the client(flutter code)
 io.on('connection',(socket)=>{
     console.log(socket.id);
+    socket.on('test',(data)=>{
+        console.log(data);
+    });
 })
 
 mongoose.connect((DB)).then(() => {
