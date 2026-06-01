@@ -20,7 +20,7 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
     _nameController.dispose();
   }
 
-   testing(){
+   void testing(){
     _socketClient.socket!.emit('test','This is Working !');
    }
 
