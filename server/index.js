@@ -4,6 +4,7 @@ const http = require('http');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const { Server } = require('socket.io');
+const Game = require ('./models/Game');
 
 // 2. Create Express app
 const app = express();
@@ -42,8 +43,6 @@ io.on('connection', (socket) => {
         } catch (e) {
             console.log(e);
         }
-
-
         // 10. Send response back
         socket.emit('game-created', {
             message: 'Game created successfully'
