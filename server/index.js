@@ -1,9 +1,9 @@
 // 1. Import required packages
-const express = require('express');       
-const http = require('http');             
-const mongoose = require('mongoose');     
-require('dotenv').config();               
-const { Server } = require('socket.io');  
+const express = require('express');
+const http = require('http');
+const mongoose = require('mongoose');
+require('dotenv').config();
+const { Server } = require('socket.io');
 
 // 2. Create Express app
 const app = express();
@@ -24,34 +24,39 @@ app.use(express.json());
 const DB = process.env.MONGO_URI;
 
 mongoose.connect(DB)
-  .then(() => {
-    console.log('Database Connected');
-  })
-  .catch((e) => {
-    console.log(e);
-  });
-
-// 8. Socket connection
-io.on('connection', (socket) => {
-  console.log('User connected:', socket.id);
-
-  // 9. Listen event from Flutter
-  socket.on('create-game', ({ nickname }) => {
-    console.log('Game created by:', nickname);
-
-    // 10. Send response back
-    socket.emit('game-created', {
-      message: 'Game created successfully'
+    .then(() => {
+        console.log('Database Connected');
+    })
+    .catch((e) => {
+        console.log(e);
     });
-  });
 
-  // 11. Disconnect
-  socket.on('disconnect', () => {
-    console.log('User disconnected:', socket.id);
-  });
+// 8. Socket connection -listening to socket io events from the client (flutter code )
+io.on('connection', (socket) => {
+    console.log('User connected:', socket.id);
+
+    // 9. Listen event from Flutter
+    socket.on('create-game', async ({ nickname }) => {
+        try {
+            let game = new Game();
+        } catch (e) {
+            console.log(e);
+        }
+
+
+        // 10. Send response back
+        socket.emit('game-created', {
+            message: 'Game created successfully'
+        });
+    });
+
+    // 11. Disconnect
+    socket.on('disconnect', () => {
+        console.log('User disconnected:', socket.id);
+    });
 });
 
 // 12. Start server
 server.listen(port, "0.0.0.0", () => {
-  console.log(`Server running on port ${port}`);
+    console.log(`Server running on port ${port}`);
 });

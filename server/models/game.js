@@ -16,4 +16,9 @@ const gameschema = new mongoose.schema({
         type: Boolean,
         default: false,
     },
+    startTime:{
+        type:Number,
+    }
 });
+const gameModel =mongoose.model('Game',gameschema);
+module.exports=gameModel;
