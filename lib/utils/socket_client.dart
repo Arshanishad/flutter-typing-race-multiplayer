@@ -1,24 +1,45 @@
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
+// We are importing socket library
+// IO = short name for socket package
+
 class SocketClient {
+  // This variable stores the socket connection
   IO.Socket? socket;
 
-  // Private static variable
+  // This stores SINGLE object of this class
+  // (used for singleton pattern - only one connection in whole app)
   static SocketClient? _instance;
 
-  // Private constructor
+  // PRIVATE CONSTRUCTOR
+  // This runs when object is created
+  // BUT only inside this class (cannot call from outside)
   SocketClient._internal() {
-    socket = IO.io('http://192.168.31.21:3000', <String, dynamic>{
-      'transports': ['websocket'],
-      'autoConnect': false,
-    });
 
+    // Creating socket connection to backend server
+    socket = IO.io(
+      'http://192.168.31.21:3000',
+
+      // configuration options
+      <String, dynamic>{
+        'transports': ['websocket'], // use websocket (real-time fast connection)
+        'autoConnect': false,        // don't connect automatically
+      },
+    );
+
+    // manually connect socket to server
     socket!.connect();
   }
 
-  // Public getter to access instance
+  // PUBLIC ACCESS POINT (getter)
+  // This is how we get SocketClient object
   static SocketClient get instance {
+
+    // If _instance is null → create new object
+    // If already created → reuse same object
     _instance ??= SocketClient._internal();
+
+    // return the object
     return _instance!;
   }
 }
