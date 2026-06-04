@@ -6,7 +6,7 @@ require('dotenv').config();
 const { Server } = require('socket.io');
 const Game = require ('./models/Game');
 
-// 2. Create Express app
+// 2.Create a new backend application (server app) using Express
 const app = express();
 
 // 3. Define port
@@ -55,7 +55,7 @@ io.on('connection', (socket) => {
     });
 });
 
-// 12. Start server
+// 12.Start the server on a given port and make it listen for incoming requests
 server.listen(port, "0.0.0.0", () => {
     console.log(`Server running on port ${port}`);
 });
