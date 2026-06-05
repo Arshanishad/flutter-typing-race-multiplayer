@@ -18,7 +18,7 @@ const server = http.createServer(app);
 // 5. Attach Socket.IO to server
 const io = new Server(server);
 
-// 6. Middleware (to read JSON data)
+// 6. Middleware (allow server to read JSON data)
 app.use(express.json());
 
 // 7. Connect to MongoDB
