@@ -23,8 +23,9 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
   void joinRoom() {
     if (_nameController.text.trim().isEmpty ||
         _gameIdController.text.trim().isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Fill all fields')));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Fill all fields')));
       return;
     }
 
@@ -65,21 +66,20 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(Icons.login,
-                          size: 60, color: Colors.white),
+                      const Icon(Icons.login, size: 60, color: Colors.white),
                       const SizedBox(height: 24),
                       const Text(
                         'Join Room',
                         style: TextStyle(
-                            fontSize: 26,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                       const SizedBox(height: 12),
                       Text(
                         'Enter room ID to join the battle',
-                        style: TextStyle(
-                            color: Colors.white.withOpacity(0.6)),
+                        style: TextStyle(color: Colors.white.withOpacity(0.6)),
                       ),
                       const SizedBox(height: 32),
                       CustomTextfield(
