@@ -45,7 +45,6 @@ class HomeScreen extends StatelessWidget {
                     const SizedBox(height: 24),
                     const Text(
                       'TypeRacer Multiplayer',
-                      textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 26,
                         fontWeight: FontWeight.bold,
@@ -55,7 +54,6 @@ class HomeScreen extends StatelessWidget {
                     const SizedBox(height: 12),
                     Text(
                       'Compete in real-time typing battles',
-                      textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.white.withOpacity(0.7),
@@ -68,9 +66,8 @@ class HomeScreen extends StatelessWidget {
                           child: CustomButton(
                             text: 'Create Room',
                             isHome: true,
-                            onTap: () {
-                              Navigator.pushNamed(context, '/create-room');
-                            },
+                            onTap: () =>
+                                Navigator.pushNamed(context, '/create-room'),
                           ),
                         ),
                         const SizedBox(width: 16),
@@ -78,9 +75,8 @@ class HomeScreen extends StatelessWidget {
                           child: CustomButton(
                             text: 'Join Room',
                             isHome: true,
-                            onTap: () {
-                              Navigator.pushNamed(context, '/join-room');
-                            },
+                            onTap: () =>
+                                Navigator.pushNamed(context, '/join-room'),
                           ),
                         ),
                       ],
@@ -88,7 +84,6 @@ class HomeScreen extends StatelessWidget {
                     const SizedBox(height: 24),
                     Text(
                       'Powered by Socket.IO',
-                      textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 11,
                         color: Colors.white.withOpacity(0.4),

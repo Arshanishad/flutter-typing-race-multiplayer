@@ -14,17 +14,32 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
   final TextEditingController _nameController = TextEditingController();
   final SocketMethods _socketMethods = SocketMethods();
 
+  bool isLoading = false;
+
   @override
   void dispose() {
     _nameController.dispose();
     super.dispose();
   }
 
+  void createRoom() async {
+    if (_nameController.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text('Enter nickname')));
+      return;
+    }
+
+    setState(() => isLoading = true);
+
+    await _socketMethods.createGame(_nameController.text.trim());
+
+    setState(() => isLoading = false);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
-      extendBodyBehindAppBar: true, 
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -33,16 +48,12 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
           onPressed: () => Navigator.pop(context),
         ),
       ),
-
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [Color(0xFF0F172A), Color(0xFF1E293B), Color(0xFF0F172A)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
           ),
         ),
-
         child: SafeArea(
           child: Center(
             child: ConstrainedBox(
@@ -56,54 +67,38 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(color: Colors.white.withOpacity(0.15)),
                   ),
-
                   child: Column(
-                    mainAxisSize: MainAxisSize.min, // ✅ important fix
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(
-                        Icons.person_add_alt_1,
-                        size: 60,
-                        color: Colors.white,
-                      ),
-
-                      const SizedBox(height: 20),
-
+                      const Icon(Icons.person_add_alt_1,
+                          size: 60, color: Colors.white),
+                      const SizedBox(height: 24),
                       const Text(
                         'Create Room',
                         style: TextStyle(
-                          fontSize: 26,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                       ),
-
-                      const SizedBox(height: 10),
-
+                      const SizedBox(height: 12),
                       Text(
                         'Start a new multiplayer typing battle',
-                        textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 13,
-                          color: Colors.white.withOpacity(0.6),
-                        ),
+                            color: Colors.white.withOpacity(0.6)),
                       ),
-
-                      SizedBox(height: size.height * 0.05),
-
+                      const SizedBox(height: 32),
                       CustomTextfield(
                         controller: _nameController,
                         hintText: 'Enter your nickname',
                       ),
-
-                      const SizedBox(height: 30),
-
-                      CustomButton(
-                        text: 'Create Room',
-                        isHome: true,
-                        onTap: () {
-                          _socketMethods.createGame(_nameController.text);
-                        },
-                      ),
+                      const SizedBox(height: 24),
+                      isLoading
+                          ? const CircularProgressIndicator()
+                          : CustomButton(
+                              text: 'Create Room',
+                              isHome: true,
+                              onTap: createRoom,
+                            ),
                     ],
                   ),
                 ),

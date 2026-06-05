@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:typeracer/widgets/custom_button.dart';
 import 'package:typeracer/widgets/custom_textfield.dart';
@@ -21,11 +20,21 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
     super.dispose();
   }
 
+  void joinRoom() {
+    if (_nameController.text.trim().isEmpty ||
+        _gameIdController.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Fill all fields')));
+      return;
+    }
+
+    // TODO: call socket join
+  }
+
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
-      extendBodyBehindAppBar: true, 
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -38,8 +47,6 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [Color(0xFF0F172A), Color(0xFF1E293B), Color(0xFF0F172A)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
           ),
         ),
         child: SafeArea(
@@ -56,28 +63,25 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
                     border: Border.all(color: Colors.white.withOpacity(0.15)),
                   ),
                   child: Column(
-                    mainAxisSize: MainAxisSize.min, 
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(Icons.login, size: 60, color: Colors.white),
-                      const SizedBox(height: 20),
+                      const Icon(Icons.login,
+                          size: 60, color: Colors.white),
+                      const SizedBox(height: 24),
                       const Text(
                         'Join Room',
                         style: TextStyle(
-                          fontSize: 26,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 12),
                       Text(
                         'Enter room ID to join the battle',
-                        textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 13,
-                          color: Colors.white.withOpacity(0.6),
-                        ),
+                            color: Colors.white.withOpacity(0.6)),
                       ),
-                      SizedBox(height: size.height * 0.05),
+                      const SizedBox(height: 32),
                       CustomTextfield(
                         controller: _nameController,
                         hintText: 'Enter your nickname',
@@ -87,12 +91,11 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
                         controller: _gameIdController,
                         hintText: 'Enter Game ID',
                       ),
-                      const SizedBox(height: 30),
+                      const SizedBox(height: 24),
                       CustomButton(
                         text: 'Join Room',
                         isHome: true,
-                        onTap: () {
-                        },
+                        onTap: joinRoom,
                       ),
                     ],
                   ),
