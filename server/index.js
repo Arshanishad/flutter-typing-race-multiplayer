@@ -7,6 +7,9 @@ require('dotenv').config();
 //From socket.io package ,take only the Server class 
 //socket.io package=toolbox
 //Server = one tool inside toolbox
+//selecting the tool need
+//import tool (Server)
+// var io =require('socket.io')(server);- old style 
 const { Server } = require('socket.io');
 const Game = require('./models/Game');
 
@@ -20,6 +23,10 @@ const port = process.env.PORT || 3000;
 const server = http.createServer(app);
 
 // 5. Socket setup
+//create Socket.io system  using my http server 
+//Server(server) = install real-time engine on your backend
+//io = that engine controller
+//attach tool to HTTP server
 const io = new Server(server);
 
 // 6. Middleware

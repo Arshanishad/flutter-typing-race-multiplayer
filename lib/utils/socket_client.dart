@@ -5,10 +5,13 @@ import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class SocketClient {
   // This variable stores the socket connection
+  // This holds the live connection
+  // This is the “wire” between Flutter and server
   IO.Socket? socket;
 
   // This stores SINGLE object of this class
   // (used for singleton pattern - only one connection in whole app)
+  // Ensures ONLY ONE socket connection exists
   static SocketClient? _instance;
 
   // PRIVATE CONSTRUCTOR
