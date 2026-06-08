@@ -22,11 +22,11 @@ class SocketClient {
     // Creating socket connection to backend server
     socket = IO.io(
       'http://192.168.31.21:3000',
-      
+
       // configuration options
-      <String, dynamic>{
-        'transports': ['websocket'], // use websocket (real-time fast connection)
-        'autoConnect': false,        // don't connect automatically
+      <String, dynamic> {
+        'transports': ['websocket'],  // use websocket (real-time fast connection)
+        'autoConnect': false,        //  don't connect automatically
       },
     );
 
