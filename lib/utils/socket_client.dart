@@ -2,7 +2,6 @@ import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 // We are importing socket library
 // IO = short name for socket package
-
 class SocketClient {
   // This variable stores the socket connection
   // This holds the live connection
