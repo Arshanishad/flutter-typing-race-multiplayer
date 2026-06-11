@@ -46,29 +46,9 @@ mongoose.connect(DB)
 // 8. Socket connection
 io.on('connection', (socket) => {
   console.log(' User connected:', socket.id);
-
-  // 9. Create Game Event
-  socket.on('create-game', async ({ nickname }) => {
-    try {
-      // Create new game
-      let game = new Game({
-        nickname
-      });
-
-      // Save to DB
-      await game.save();
-
-      console.log('Game saved:', game);
-
-      // Send response
-      socket.emit('game-created', {
-        message: 'Game created successfully'
-      });
-
-    } catch (e) {
-      console.log(e);
-    }
-  });
+  // socket.on('test',(data)=>{
+  //  console.log(data);
+  // })
 
   // 10. Disconnect
   socket.on('disconnect', () => {
