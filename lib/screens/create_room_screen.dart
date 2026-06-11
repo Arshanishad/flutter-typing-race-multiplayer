@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_typing_race_multiplayer/utils/socket_client.dart';
 import 'package:flutter_typing_race_multiplayer/utils/socket_methods.dart';
 import 'package:flutter_typing_race_multiplayer/widgets/custom_button.dart';
 import 'package:flutter_typing_race_multiplayer/widgets/custom_textfield.dart';
@@ -48,9 +47,7 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
               const SizedBox(height: 30,),
               CustomButton(text: 'Create', 
               // onTap: testing,
-              onTap: (){
-                
-              },
+              onTap: () => _socketMethods.createGame(_nameController.text),
               )
             ],
           ),
