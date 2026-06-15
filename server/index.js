@@ -50,11 +50,11 @@ io.on('connection', (socket) => {
   //  console.log(data);
   // })
   socket.on('create-game',async({nickname})=>{
-try{
+  try{
 
-}catch(e){
+  }catch(e){
   console.log(e);
-}
+  }
   });
 
   // 10. Disconnect

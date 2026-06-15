@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const playerSchema = require('./Player');
 
 const gameSchema = new mongoose.Schema({
     words: [
@@ -6,7 +7,7 @@ const gameSchema = new mongoose.Schema({
             type: String
         }
     ],
-    players: [],
+    players: [playerSchema],
     isJoin: {
         type: Boolean,
         default: true
@@ -19,7 +20,6 @@ const gameSchema = new mongoose.Schema({
         type: Number
     }
 });
-
 const Game = mongoose.model('Game', gameSchema);
 
 module.exports = Game;
