@@ -51,7 +51,7 @@ io.on('connection', (socket) => {
   // })
   socket.on('create-game',async({nickname})=>{
   try{
-
+  let  game = new Game();
   }catch(e){
   console.log(e);
   }
