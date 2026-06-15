@@ -51,14 +51,21 @@ io.on('connection', (socket) => {
   // socket.on('test',(data)=>{
   //  console.log(data);
   // })
-  socket.on('create-game',async({nickname})=>{
-  try{
-  let  game = new Game();
-  const sentence = await getSentence;
-  game.words=
-  }catch(e){
-  console.log(e);
-  }
+  socket.on('create-game', async ({ nickname }) => {
+    try {
+      let game = new Game();
+      const sentence = await getSentence();
+      game.words = sentence;
+      let player = {
+        socketID: socket.id,
+        nickname,
+        isPartyLeader:true,
+      }
+      game.players.push(player);
+      game =await game.save();
+    } catch (e) {
+      console.log(e);
+    }
   });
 
   // 10. Disconnect
@@ -68,10 +75,10 @@ io.on('connection', (socket) => {
 });
 
 
- // 11. Start server
+// 11. Start server
 // server.listen(port, "0.0.0.0", () => {
 //   console.log(`Server running on port ${port}`);
 // });
 server.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+  console.log(`Server running on port ${port}`);
 });
