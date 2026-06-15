@@ -12,6 +12,7 @@ require('dotenv').config();
 // var io =require('socket.io')(server);- old style 
 const { Server } = require('socket.io');
 const Game = require('./models/Game');
+const getSentence = require('./api/getSentence');
 
 
 // 2. Create app
@@ -53,6 +54,7 @@ io.on('connection', (socket) => {
   socket.on('create-game',async({nickname})=>{
   try{
   let  game = new Game();
+  const sentence = await getSentence;
   game.words=
   }catch(e){
   console.log(e);
