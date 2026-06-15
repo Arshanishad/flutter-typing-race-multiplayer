@@ -14,7 +14,6 @@ const { Server } = require('socket.io');
 const Game = require('./models/Game');
 const getSentence = require('./api/getSentence');
 
-
 // 2. Create app
 const app = express();
 
@@ -73,7 +72,6 @@ io.on('connection', (socket) => {
     console.log('User disconnected:', socket.id);
   });
 });
-
 
 // 11. Start server
 // server.listen(port, "0.0.0.0", () => {
