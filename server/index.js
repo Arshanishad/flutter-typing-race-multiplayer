@@ -41,7 +41,7 @@ mongoose.connect(DB)
     console.log('Database Connected');
   })
   .catch((e) => {
-    console.log(e);
+    console.log(e); 
   });
 
 // 8. Socket connection
