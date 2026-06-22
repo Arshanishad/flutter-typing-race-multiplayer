@@ -37,12 +37,10 @@ app.use(express.json());
 // 7. Connect MongoDB
 const DB = process.env.MONGO_URI;
 
-mongoose.connect(DB)
-  .then(() => {
+mongoose.connect(DB) .then(() => {
     console.log('Database Connected');
-  })
-  .catch((e) => {
-    console.log(e); 
+  }) .catch((e) => {
+   console.log(e); 
   });
 
 // 8. Socket connection
