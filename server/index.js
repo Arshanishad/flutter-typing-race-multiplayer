@@ -38,7 +38,7 @@ app.use(express.json());
 const DB = process.env.MONGO_URI;
 mongoose.connect(DB) .then(() => {
     console.log('Database Connected');
-  }) .catch((e) => {
+  }).catch((e) => {
    console.log(e); 
   });
 
