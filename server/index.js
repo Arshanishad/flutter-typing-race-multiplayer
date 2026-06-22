@@ -36,7 +36,6 @@ app.use(express.json());
 
 // 7. Connect MongoDB
 const DB = process.env.MONGO_URI;
-
 mongoose.connect(DB) .then(() => {
     console.log('Database Connected');
   }) .catch((e) => {
@@ -82,3 +81,4 @@ io.on('connection', (socket) => {
 server.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
