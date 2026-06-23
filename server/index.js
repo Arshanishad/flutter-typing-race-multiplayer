@@ -1,7 +1,7 @@
 // 1. Import packages
-const express = require('express');
-const http = require('http');
-const mongoose = require('mongoose');
+import express, { json } from 'express';
+import { createServer } from 'http';
+import { connect } from 'mongoose';
 require('dotenv').config();
 
 //From socket.io package ,take only the Server class 
@@ -11,9 +11,9 @@ require('dotenv').config();
 //import tool (Server)
 // var io =require('socket.io')(server);- old style 
 
-const { Server } = require('socket.io');
-const Game = require('./models/Game');
-const getSentence = require('./api/getSentence');
+import { Server } from 'socket.io';
+import Game from './models/Game';
+import getSentence from './api/getSentence';
 
 // 2. Create app
 const app = express();
@@ -22,7 +22,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // 4. Create server
-const server = http.createServer(app);
+const server = createServer(app);
 
 // 5. Socket setup
 //create Socket.io system  using my http server 
@@ -32,11 +32,11 @@ const server = http.createServer(app);
 const io = new Server(server);
 
 // 6. Middleware
-app.use(express.json());
+app.use(json());
 
 // 7. Connect MongoDB
 const DB = process.env.MONGO_URI;
-mongoose.connect(DB) .then(() => {
+connect(DB) .then(() => {
     console.log('Database Connected');
   }).catch((e) => {
    console.log(e); 
