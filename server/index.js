@@ -12,7 +12,7 @@ require('dotenv').config();
 // var io =require('socket.io')(server);- old style 
 
 import { Server } from 'socket.io';
-import Game from './models/Game';
+import Game from './m odels/Game';
 import getSentence from './api/getSentence';
 
 // 2. Create app
