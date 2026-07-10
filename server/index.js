@@ -3,7 +3,6 @@ import express, { json } from 'express';
 import { createServer } from 'http';
 import { connect } from 'mongoose';
 require('dotenv').config();
-
 //From socket.io package ,take only the Server class 
 //socket.io package=toolbox
 //Server = one tool inside toolbox
