@@ -4,4 +4,4 @@ const getSentence=async ()=>{
    return res.data.content.split(" ");
 };
 
-module.exports =getSentence;
+module.exports = getSentence;
