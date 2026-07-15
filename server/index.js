@@ -48,6 +48,7 @@ io.on('connection', (socket) => {
   // socket.on('test',(data)=>{
   //  console.log(data);
   // })
+  
   socket.on('create-game', async ({ nickname }) => {
     try {
       let game = new Game();
