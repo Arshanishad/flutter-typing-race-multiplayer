@@ -2,7 +2,7 @@
 import express, { json } from 'express';
 import { createServer } from 'http';
 import { connect } from 'mongoose';
-require('dotenv').config();
+require('dotenv').config(); 
 //From socket.io package ,take only the Server class 
 //socket.io package=toolbox
 //Server = one tool inside toolbox
@@ -28,6 +28,7 @@ const server = createServer(app);
 //Server(server) = install real-time engine on your backend
 //io = that engine controller
 //attach tool to HTTP server
+
 const io = new Server(server);
 
 // 6. Middleware
